@@ -3,8 +3,8 @@
   <input type="search" class="form-control" formControlName="search" id="keyword" placeholder="Search country or code">
   <ul class="filter-select" [ngClass]="searchStyle">
     <label>Search Suggestion</label>
-    <li *ngFor="let name of countryName" class="filter-selected-list">
-      <a [routerLink]="['/country-detail',name]"><span class="tags">{{name}}</span></a>
+    <li *ngFor="let country of countryList" class="filter-selected-list">
+      <a [routerLink]="['/country-detail',country.alpha3Code]"><span class="tags">{{country.name}}</span></a>
     </li>
   </ul>
   <!-- <input type="submit" value="search">fill(name) -->

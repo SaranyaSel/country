@@ -28,17 +28,22 @@ export class CountryDetailComponent implements OnInit {
     (response)=>{
       console.log(name);
       // this.country_visit.push= name;
-      this.country_visit = JSON.parse(localStorage.getItem('country_visit')) || [];
-      console.log(this.country_visit);
-      this.country_visit.push(name);
-      console.log(this.country_visit);
-      localStorage.setItem('country_visit', JSON.stringify(this.country_visit));
+     
       console.log(response);
       this.country=response[0];
       console.log( this.country);
+      this.country_visit = JSON.parse(localStorage.getItem('country_visit')) || [];
+      console.log(this.country_visit);
+      this.country_visit.push(this.country.name);
+      console.log(this.country_visit);
+      localStorage.setItem('country_visit', JSON.stringify(this.country_visit));
     }
     );
 
+  }
+
+  onBack(): void {
+    this.router.navigate(['/home']);
   }
 
 }

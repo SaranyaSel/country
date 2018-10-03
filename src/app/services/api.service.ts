@@ -17,7 +17,8 @@ export class ApiService {
   }
   getSearch(keyword){
     // console.log(keyword);
-    if(keyword){
+    if(keyword  ){
+      console.log(keyword);
       const url='https://restcountries.eu/rest/v2/name/'+keyword;
       const httpObservable=this.http.get<{keyword:any}>(url);
       return httpObservable;
@@ -30,10 +31,11 @@ export class ApiService {
     // console.log(httpObservable);
    
   }
-  getCountry(name){
-    const url='https://restcountries.eu/rest/v2/name/'+name;
-    const httpObservable=this.http.get<{name:string}>(url);
-    // console.log(httpObservable);
+  getCountry(code){
+    console.log(code);
+    const url='https://restcountries.eu/rest/v2/alpha?codes='+code;
+    const httpObservable=this.http.get<{code:string}>(url);
+    console.log(httpObservable);
     return httpObservable;
   }
 
