@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+.displayblock{
+    display:block!important;
+}
+.displaynone{
+    display:none!important;
+}
+.img-flag{
+    margin:0 auto;
+    width: 200px;
+}

@@ -1,0 +1,22 @@
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Flag</th>
+            <th>Currencies</th>
+            <th>Area</th>
+            <th>Latitude and Longitude</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let country of countryListInfo'>
+            <td><a [routerLink]="['/country-detail',country.name]">{{country.name}}</a></td>
+            <td>{{country.alpha3Code}}</td>
+            <td><img [src]="country.flag" alt="{{country.name}} flag" width="50"></td>
+            <td>{{country.currencies[0].code}}</td>
+            <td>{{country.area}}</td>
+            <td>{{country.latlng}}</td>
+        </tr>
+    </tbody>
+</table>
