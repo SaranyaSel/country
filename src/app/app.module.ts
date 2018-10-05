@@ -10,8 +10,6 @@ import { SearchComponent } from './search/search.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CountryDetailComponent } from './country-detail/country-detail.component';
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

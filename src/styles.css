@@ -10,3 +10,7 @@
     margin:0 auto;
     width: 200px;
 }
+.footer{
+    text-align: center;
+    bottom: 0;
+}

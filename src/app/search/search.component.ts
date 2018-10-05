@@ -20,25 +20,18 @@ export class SearchComponent implements OnInit {
   constructor(public countryService: ApiService) { }
 
   ngOnInit() {
-    this.searchStyle='displaynone';
-    this.searchHistory = JSON.parse(localStorage.getItem('country_visit'));
-    this.searchHistory=this.filterCountry(this.searchHistory);
     this.initForm();
+    this.searchStyle='displaynone';
+    //retrieve from local storage
+    this.searchHistory = JSON.parse(localStorage.getItem('country_name'));
+    // console.log(JSON.parse(localStorage.getItem('country_name')));
+    if(this.searchHistory){//check the search is true
+      this.searchHistory=this.countryService.filterCountry(this.searchHistory);
+      // console.log(this.searchHistory);
+    }
     this.getCountry();
   }
-  filterCountry(country){
-    let list={};
-    for(var i=0;i<country.length;i++){
-      list[country[i]]=true;
-      // console.log(country[i]);
-    }
-    country=[];
-    for(let name in list){
-      country.push(name);
-      // console.log(country);
-    }
-    return country;
-  }
+  
   private initForm(){
     let search='';
     this.searchForm=new FormGroup({
@@ -52,7 +45,7 @@ export class SearchComponent implements OnInit {
     .switchMap((search)=>this.countryService.getSearch(search))
     .subscribe(
       (response:any)=>{
-        console.log(response);
+        // console.log(response);
         let len;
         if(this.searchForm.controls['search'].value.length>=3){
           this.searchStyle='displayblock';
@@ -60,21 +53,17 @@ export class SearchComponent implements OnInit {
             this.countryList=[];
             this.countryName=[];
             this.countryList=response;
-            console.log(this.countryList);
-            // this.countryList.forEach(function (value) {
-            //   this.countryName=value.name;
-            //   console.log(value.name);
-            // });
+            // console.log(this.countryList);
+            //display only 10 in the list
             if(response.length>10){
               len=10;
             }
             else{
               len=response.length;
             }
-          
             for(var i=0;i<len;i++){
               this.countryName[i]=this.countryList[i].name;
-              console.log(this.countryName);
+              // console.log(this.countryName);
             }
           }
         }

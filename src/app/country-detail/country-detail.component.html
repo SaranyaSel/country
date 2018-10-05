@@ -1,36 +1,40 @@
 <div class="container">
-    <div class="row">
-        <div class="col-xs-12">
-            <img class="img-flag" *ngIf="country.flag" [src]="country.flag" alt="{{country.name}} flag">
-        </div>
+  <div class="row">
+    <div class="col-xs-6 flag">
+      <img class="img-flag" *ngIf="cflag" [src]="country.flag" alt="{{country.name}} flag">
     </div>
-    <div class="row justify-content-center">
-        <div class="col-xs-6">
-            Name:
-        </div>
-        <div class="col-xs-6">
-            {{country.name}}
-        </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">
+      Name:
+    </div>
+    <div class="col-xs-6">
+      {{cname}}
+    </div>
 
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xs-6">Code:</div>
-        <div class="col-xs-6">{{country.alpha3Code}}</div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xs-6 ">Curriencies:</div>
-        <div class="col-xs-6">{{country.currencies[0].code}}</div>
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xs-6">Area:</div>
-        <div class="col-xs-6">{{country.area}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">Code:</div>
+    <div class="col-xs-6">{{ccode}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6 ">Curriencies:</div>
+    <div class="col-xs-6">{{ccurrency}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">Area:</div>
+    <div class="col-xs-6">{{carea}}</div>
 
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-xs-6">Latitude and Longitude:</div>
-        <div class="col-xs-6">{{country.latlng}}</div>
-    </div>
-    <a class='btn btn-primary' (click)='onBack()' style='width:140px;'>
-        <span style="font-size:1.1em"><</span> Back to home
-    </a>
+  </div>
+  <div class="row">
+    <div class="col-xs-6">Latitude and Longitude:</div>
+    <div class="col-xs-6">{{cltld}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+        <a class='btn btn-primary text-white back' (click)='onBack()'>
+            <span class="carousel-control-prev-icon"></span> Back to home 
+        </a> 
+    </div> 
+  </div> 
 </div>

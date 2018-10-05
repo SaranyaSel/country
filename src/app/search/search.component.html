@@ -1,20 +1,22 @@
 <div class="container">
   <div class="filter-wrapper row">
-    <form [formGroup]="searchForm" class="keyword-wrapper col-xs-12"  action="">
-    <input type="search" class="form-control" formControlName="search" id="keyword" placeholder="Search country">
-    <ul class="filter-select" [ngClass]="searchStyle">
-      <label>Search Suggestion</label>
-      <li><label>Country Name--Code</label></li>
-      <li *ngFor="let country of countryList" class="filter-selected-list">
-        <a [routerLink]="['/country-detail',country.alpha3Code]"><span class="tags">{{country.name}}--{{country.alpha3Code}}</span></a>
-      </li>
-    </ul>
+    <form [formGroup]="searchForm" class="keyword-wrapper col-xs-12" action="">
+      <input type="search" class="form-control" formControlName="search" autocomplete="off" id="keyword" placeholder="Search country name">
+      <ul class="filter-select" *ngIf="countryList" [ngClass]="searchStyle">
+        <label>Search Suggestion</label>
+        <li><label>Country Name--Code</label></li>
+        <li *ngFor="let country of countryList" class="filter-selected-list">
+          <a [routerLink]="['/country-detail',country.alpha3Code]"><span class="tags">{{country.name}}--{{country.alpha3Code}}</span></a>
+        </li>
+      </ul>
     </form>
-    <div class="col-xs-12 search-history">
-      Search History
-      <div *ngFor="let search_country of searchHistory">
-        {{search_country}}
+    <ng-container *ngIf="searchHistory">
+      <div class="col-xs-12 search-history">
+        Search History
+        <div *ngFor="let search_country of searchHistory">
+          <a [routerLink]="['/country-detail',search_country]">{{search_country}}</a>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>

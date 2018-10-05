@@ -12,14 +12,15 @@ export class CountryInfoComponent implements OnInit {
   constructor(public countryService: ApiService) { }
 
   ngOnInit() {
-    this.getCountry();
+    this.getCountry();//initialise the list
   }
    getCountry(){
+     //getting all country through services
      this.countryService.getCountries()
      .subscribe(
        (data)=>{
         if(data){
-          console.log(data);
+          // console.log(data);
           this.countryListInfo=data;
         }
        }
