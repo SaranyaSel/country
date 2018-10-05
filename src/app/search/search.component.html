@@ -4,10 +4,9 @@
   <ul class="filter-select" [ngClass]="searchStyle">
     <label>Search Suggestion</label>
     <li *ngFor="let country of countryList" class="filter-selected-list">
-      <a [routerLink]="['/country-detail',country.alpha3Code]"><span class="tags">{{country.name}}</span></a>
+      <a [routerLink]="['/country-detail',country.alpha3Code]"><span class="tags">{{country.name}}--{{country.alpha3Code}}</span></a>
     </li>
   </ul>
-  <!-- <input type="submit" value="search">fill(name) -->
   </form>
   <div class="col-xs-12">
     Search History

@@ -21,9 +21,23 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchStyle='displaynone';
-    this.initForm();
     this.searchHistory = JSON.parse(localStorage.getItem('country_visit'));
+    this.searchHistory=this.filterCountry(this.searchHistory);
+    this.initForm();
     this.getCountry();
+  }
+  filterCountry(country){
+    let list={};
+    for(var i=0;i<country.length;i++){
+      list[country[i]]=true;
+      // console.log(country[i]);
+    }
+    country=[];
+    for(let name in list){
+      country.push(name);
+      // console.log(country);
+    }
+    return country;
   }
   private initForm(){
     let search='';
