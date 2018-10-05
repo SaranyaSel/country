@@ -3,6 +3,7 @@ import { Country } from '../country';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
+
 @Component({
   selector: 'app-country-detail',
   templateUrl: './country-detail.component.html',
@@ -13,7 +14,9 @@ export class CountryDetailComponent implements OnInit {
   country_visit=[];
   constructor(private route:ActivatedRoute,
   private router:Router,
-  private service:ApiService) { }
+  private service:ApiService) { 
+
+  }
 
   ngOnInit() {
     let param=this.route.snapshot.paramMap.get('name');
