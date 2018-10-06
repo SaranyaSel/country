@@ -51,15 +51,15 @@ export class ApiService {
   //filter the country for single entry and store in reverse
   filterCountry(country) {
     let list = {};
-    console.log(country.length);
+    // console.log(country.length);
     for (var i = country.length - 1; i >= 0; i--) {
       list[country[i]] = true;
-      console.log(i, country[i]);
+      // console.log(i, country[i]);
     }
     country = [];
     for (let name in list) {
       country.push(name);
-      console.log(country);
+      // console.log(country);
     }
     return country;
   }

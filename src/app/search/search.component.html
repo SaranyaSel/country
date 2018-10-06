@@ -10,6 +10,9 @@
         </li>
       </ul>
     </form>
+    <div *ngIf='errorMessage' class='alert alert-danger'>
+      Error: {{ errorMessage }}
+    </div>
     <ng-container *ngIf="searchHistory">
       <div class="col-xs-12 search-history">
         Search History
@@ -20,3 +23,19 @@
     </ng-container>
   </div>
 </div>
+<ng-template #error404>
+  <div class="modal-header modal-header-customize">
+    <button type="button" class="close pull-right close-bigsize" aria-label="Close" (click)="modalRef.hide()"
+      [disabled]="submitted">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body modal-body-large-text">
+    <!-- <div class="oops">OOOPS!</div> -->
+    <br>
+    <div>
+      Please enter valid country name
+      <br>
+    </div>
+  </div>
+</ng-template>

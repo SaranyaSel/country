@@ -1,10 +1,13 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild  } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { Country } from '../country';
 import { FormGroup,FormControl, Validators } from '@angular/forms';
 import  'rxjs/add/operator/debounceTime';
 import  'rxjs/add/operator/distinctUntilChanged';
 import  'rxjs/add/operator/switchMap';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -17,9 +20,16 @@ export class SearchComponent implements OnInit {
   countryName:any=[];
   searchStyle:string;
   searchHistory:any=[];
-  constructor(public countryService: ApiService) { }
+  errorMessage: string;
+  modalRef: BsModalRef;
+  @ViewChild('error404') error404: TemplateRef<any>;
+  constructor(public countryService: ApiService,
+    private router: Router, 
+    private route: ActivatedRoute,
+    private modalService: BsModalService) { }
 
   ngOnInit() {
+    // console.log("oninit");
     this.initForm();
     this.searchStyle='displaynone';
     //retrieve from local storage
@@ -37,6 +47,9 @@ export class SearchComponent implements OnInit {
     this.searchForm=new FormGroup({
       'search':new FormControl(search, Validators.min(3))
     });
+  }
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
   getCountry(){
     this.searchForm.controls['search'].valueChanges
@@ -61,6 +74,7 @@ export class SearchComponent implements OnInit {
             else{
               len=response.length;
             }
+            ///display list from 1 to max 10
             for(var i=0;i<len;i++){
               this.countryName[i]=this.countryList[i].name;
               // console.log(this.countryName);
@@ -70,15 +84,15 @@ export class SearchComponent implements OnInit {
         else{
           this.searchStyle='displaynone';
         }
-        // foreach
       },
-      (error)=>{
-        console.log(error);
-      },
-      ()=>{
-        console.log('completed');
+      (error) => {
+        //avoid 404 error on search
+        // console.log(error);
+        this.openModal(this.error404);
+        this.searchForm.reset({ 'search':''});
+        //this is to reload home page. many reference not working. so made some trick to reload.This will allow application to work properly.
+        this.router.navigate(['/refresh'], { relativeTo: this.route });
       }
-    );
-    
+    ); 
   }
 }
